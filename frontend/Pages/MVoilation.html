@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="We harness the latest technologies to make the parking experience more comfortable." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Manage Violation</title>
+    <link rel="stylesheet" href="../Global/MVStyle.css">
+    <link rel="stylesheet" href="../Global/print.css" media="print">
+
+    <!--link of JavaScrept-->
+    <script defer src="../Scripts/main.js"></script>
+    <script defer src="../Scripts/MV.js"></script>
+    <script defer src="../Scripts/notify.js"></script>
+
+
+</head>
+<body>
+
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar"  id="sidebar">
+        <div class="logo"><img src="../images/Logo.svg" alt="Logo"></div>
+        
+            <!-- زر إخفاء القائمة -->
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <img src="../images/indent.svg" alt="Close Sidebar">
+        </div>
+
+
+        <!-- عنوان القائمة مع الخط -->
+        <div class="menu-title">Menu</div>
+        <hr class="menu-divider">
+    
+
+        <nav>
+            <ul>
+                <li>
+                    <li>
+                        <a href="MVoilation.html" class="menu-link active">
+                            <img src="../images/VOOL.svg" alt="Violation Icon">
+                            Manage Violation
+                        </a>
+                    </li>
+                <li>
+                    <a href="MNCamera.html" class="menu-link">
+                        <img src="../images/Camera.png" alt=""> Manage Cameras
+                    </a>
+                </li>
+                <li>
+                    <a href="account.html" class="menu-link">
+                        <img src="../images/Account.svg" alt=""> Account
+                    </a>
+                </li>
+                <li>
+                    <a href="AboutUs.html" class="menu-link">
+                        <img src="../images/Info.svg" alt=""> About us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="logout">
+            <a href="#" class="logout-link" id="logoutBtn">
+              <img src="../images/Logout Rounded Left.svg" alt="Logout Icon">
+              Logout
+            </a>
+          </div>
+          
+    </aside>
+
+    <main class="content">
+        <header class="topbar" id="menuIcon" >   
+            <!-- زر إظهار الشريط الجانبي عند إخفائه (يجب أن يكون هنا) -->
+            <div class="menu-icon" id="toggleSidebarTop" style="display: none;">
+                <img src="../images/boldback.svg" alt="Open Sidebar">
+            </div>
+
+
+            <div class="search-bar">
+                <img src="../images/Serch.svg" alt="Search">
+                <input type="text" placeholder="Search">
+            </div>
+    
+            <div class="date-picker">
+                <div class="calendar-icon">
+                    <img src="../images/Calendar.svg" alt="Calendar">
+                </div>
+                <span id="current-date"></span> <!-- سيتم تحديث هذا العنصر تلقائيًا -->
+            </div>
+
+            <div class="notification-icon">
+                <img src="../images/Notification.svg" alt="Notifications">
+                <span class="badge" style="display: none;"></span>
+            </div>
+
+            <div class="user-info">
+                <div class="user-details">
+                    <span id="user-name"> --</span>
+                    <span id="user-id">--</span>
+                </div>
+                <div class="user-avatar">
+                    <img id="profile-image" src="../images/Persson.svg" alt="User">
+                </div>
+            </div>
+        </header>
+
+        <!-- Background Section -->
+        <div class="container">
+
+            <div class="manage-violation">
+                <h2>Manage Violation</h2>
+            
+                <!-- فلترة بالتاريخ -->
+                <div class="filter-container">
+                    <label for="fromDate">From</label>
+                    <div class="date-input-container">
+                        <img src="../images/Calendar.svg" class="calendar-icon" alt="Calendar">
+                        <input type="date" id="fromDate" >
+                    </div>
+                
+                    <label for="toDate">To</label>
+                    <div class="date-input-container">
+                        <img src="../images/Calendar.svg" class="calendar-icon" alt="Calendar">
+                        <input type="date" id="toDate" >
+                    </div>
+                
+                    <button onclick="filterTable()">Filter</button>
+                </div>
+
+            
+                <!-- جدول المخالفات -->
+                <div class="table-container">
+                    <table id="violationTable">
+                        <thead>
+                            <tr>
+                                <th>Warning ID</th>
+                                <th>Violation Type</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="violationTableBody">
+                            <!-- سيتم إدخال البيانات هنا بواسطة JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+
+
+    <!-- Violation Details Modal -->
+    <div id="violationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+
+            <!-- العناوين الرئيسية -->
+            <div class="modal-header">
+                <h2 class="modal-title">Violation Details</h2>
+                <p class="modal-subtitle">Violation Number: <span id="violationNumber"></span></p>
+            </div>
+
+            <!-- المحتوى الرئيسي: المعلومات والصورة -->
+            <div class="modal-body">
+                <div class="modal-info">
+                    <p><strong>Name:</strong> <span id="violationName"></span></p>
+                    <p><strong>ID:</strong> <span id="violationID"></span></p>
+                    <p><strong>Car License Plate:</strong> <span id="licensePlate"></span></p>
+                    <p><strong>Date:</strong> <span id="violationDate"></span></p>
+                    <p><strong>Time:</strong> <span id="violationTime"></span></p>
+                </div>
+
+                <div class="modal-image">
+                    <img id="violationImage" src="" alt="Violation Picture">
+                    <p class="image-caption">Violation Picture</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة لعرض الإشعارات -->
+    <div id="notificationPopup" class="notification-popup">
+        <div class="popup-header">
+            <h3>Notifications</h3>
+            <span class="close-popup" onclick="closeNotificationPopup()">×</span>
+        </div>
+            <ul id="notificationList" class="notification-list">
+            </ul>
+    </div>
+
+
+
+</body>
+</html>

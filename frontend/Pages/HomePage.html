@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="We harness the latest technologies to make the parking experience more comfortable." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>RAKN System</title>
+    <link rel="stylesheet" href="../Global/HompageStyle.css">
+    <!--link of JavaScrept-->
+    <script defer src="../Scripts/main.js"></script>
+    <script defer src="../Scripts/notify.js"></script>
+
+</head>
+<body>
+
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar"  id="sidebar">
+        <div class="logo"><img src="../images/Logo.svg" alt="Logo"></div>
+        
+            <!-- زر إخفاء القائمة -->
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <img src="../images/indent.svg" alt="Close Sidebar">
+        </div>
+
+
+        <!-- عنوان القائمة مع الخط -->
+        <div class="menu-title">Menu</div>
+        <hr class="menu-divider">
+    
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="MVoilation.html" class="menu-link">
+                        <img src="../images/ViolateGray.svg" alt=""> Manage Violation
+                    </a>
+                </li>
+                <li>
+                    <a href="MNCamera.html" class="menu-link">
+                        <img src="../images/Camera.png" alt=""> Manage Cameras
+                    </a>
+                </li>
+                <li>
+                    <a href="Account.html" class="menu-link">
+                        <img src="../images/Account.svg" alt=""> Account
+                    </a>
+                </li>
+                <li>
+                    <a href="AboutUs.html" class="menu-link">
+                        <img src="../images/Info.svg" alt=""> About us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="logout">
+            <a href="#" class="logout-link" id="logoutBtn">
+              <img src="../images/Logout Rounded Left.svg" alt="Logout Icon">
+              Logout
+            </a>
+          </div>
+          
+    </aside>
+
+    <main class="content">
+        <header class="topbar" id="menuIcon" >   
+            <!-- زر إظهار الشريط الجانبي عند إخفائه (يجب أن يكون هنا) -->
+            <div class="menu-icon" id="toggleSidebarTop" style="display: none;">
+                <img src="../images/boldback.svg" alt="Open Sidebar">
+            </div>
+
+
+            <div class="search-bar">
+                <img src="../images/Serch.svg" alt="Search">
+                <input type="text" placeholder="Search">
+            </div>
+    
+            <div class="date-picker">
+                <div class="calendar-icon">
+                    <img src="../images/Calendar.svg" alt="Calendar">
+                </div>
+                <span id="current-date"></span> <!-- سيتم تحديث هذا العنصر تلقائيًا -->
+            </div>
+
+            <div class="notification-icon">
+                <img src="../images/Notification.svg" alt="Notifications">
+                <span class="badge" style="display: none;"></span>
+            </div>
+
+            <div class="user-info">
+                <div class="user-details">
+                    <span id="user-name"> --</span>
+                    <span id="user-id">--</span>
+                </div>
+                <div class="user-avatar">
+                    <img id="profile-image" src="../images/Persson.svg" alt="User">
+                </div>
+            </div>
+        </header>
+
+        <!-- Background Section -->
+        <div class="container">
+            <div class="logo-overlay">
+                <img src="../images/Logo.svg" alt="RAKN Logo">
+            </div>
+                <!-- هذا الجزء فارغ الآن للخلفية السماوية -->
+        </div>
+
+
+    </main>
+
+    <!-- نافذة منبثقة لعرض الإشعارات -->
+    <div id="notificationPopup" class="notification-popup">
+        <div class="popup-header">
+            <h3>Notifications</h3>
+            <span class="close-popup" onclick="closeNotificationPopup()">×</span>
+        </div>
+            <ul id="notificationList" class="notification-list">
+            </ul>
+    </div>
+
+</body>
+</html>

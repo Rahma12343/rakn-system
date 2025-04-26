@@ -1,0 +1,687 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #ffffff;
+    /* تغيير الخلفية إلى الأبيض */
+    overflow-y: auto;
+    /* السماح بالتمرير فقط للصفحة */
+
+}
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    padding-bottom: 20px;
+    /* إضافة بعض التباعد في الأسفل */
+    transition: left 0.3s ease-in-out;
+    /* إضافة تأثير الظهور */
+}
+
+/* عند إخفاء الشريط الجانبي */
+.sidebar.collapsed {
+    left: -360px;
+    /* تحريك القائمة للخارج */
+}
+
+/* عند إخفاء الشريط الجانبي، يتمدد المحتوى */
+.content.expanded,
+.topbar.expanded {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* تأثير الحركة عند الإخفاء */
+.sidebar,
+.content,
+.topbar {
+    transition: all 0.3s ease-in-out;
+}
+
+
+.sidebar .logo {
+    text-align: center;
+    padding: 80px 0 20px;
+}
+
+.sidebar .logo img {
+    width: 200px;
+}
+
+.sidebar .menu-title {
+    font-size: 16px;
+    color: #B0B0B0;
+    font-weight: bold;
+    padding: 15px 15px 0px;
+    /* زيادة المسافة العلوية لإنزال القائمة */
+}
+
+
+
+.sidebar nav {
+    margin-top: 0px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.sidebar nav ul li img {
+    width: 32px;
+    /* زيادة عرض الأيقونة */
+    height: 32px;
+    /* زيادة ارتفاع الأيقونة */
+    margin-right: 12px;
+    /* الحفاظ على المسافة بين الأيقونة والنص */
+}
+
+
+
+
+
+/* تنسيق الروابط داخل القائمة الجانبية */
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #666;
+    /* اللون الافتراضي */
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 5px 0;
+    font-size: 16px;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* تنسيق العنصر النشط */
+.sidebar nav ul li a.active {
+    color: #004AAB;
+    /* لون النص عند التحديد */
+    font-weight: bold;
+}
+
+
+
+
+/* تغيير لون الأيقونة إلى الأزرق */
+.sidebar nav ul li a.active img {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(7452%) hue-rotate(209deg) brightness(93%) contrast(92%);
+}
+
+/* عند تمرير الماوس فوق العنصر */
+.sidebar nav ul li a:hover {
+    background: #ECECEC;
+}
+
+
+.sidebar .logout {
+    margin-top: 15px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+/* تنسيق الرابط داخل زر تسجيل الخروج */
+.sidebar .logout a {
+    display: flex;
+    align-items: center;
+    color: red;
+    /* لون النص */
+    font-size: 16px;
+    text-decoration: none;
+    /* إزالة الخط */
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sidebar .logout a img {
+    width: 20px;
+    /* ضبط حجم الأيقونة */
+    height: 20px;
+    margin-right: 10px;
+    /* إضافة مسافة بين الأيقونة والنص */
+}
+
+/* عند تمرير الماوس، تغيير لون الخلفية */
+.sidebar .logout a:hover {
+    background: rgba(255, 0, 0, 0.1);
+    /* تأثير خفيف عند التمرير */
+    color: darkred;
+}
+
+/* جعل زر التحكم في الركن العلوي الأيسر */
+.toggle-sidebar {
+    position: absolute;
+    top: 25px;
+    /* يحدد المسافة من الأعلى */
+    left: 25px;
+    /* يحدد المسافة من اليسار */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    /* خلفية بيضاء */
+    border-radius: 50%;
+    /* يجعل الزر دائريًا */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: 1100;
+    /* تأكد من أن الزر فوق كل العناصر */
+}
+
+/* تغيير لون الخلفية عند التفاعل */
+.toggle-sidebar:hover {
+    background: #f0f0f0;
+}
+
+/* جعل الأيقونة بداخل الزر */
+.toggle-sidebar img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* عند تصغير الشريط الجانبي، تدور الأيقونة */
+.sidebar.collapsed .toggle-sidebar img {
+    transform: rotate(180deg);
+}
+
+
+
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    /* لون أزرق فاتح يبدأ من العنوان */
+    padding: 12px 20px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    height: 70px;
+    /* تقليل الارتفاع */
+    position: fixed;
+    /* جعله ثابتًا في الأعلى */
+    top: 0;
+    right: 0;
+    z-index: 100;
+    margin-left: 280px;
+    /* يجعل شريط البحث يبدأ بعد الشريط الجانبي */
+    width: calc(100% - 360px);
+    /* تأكد من أن العرض لا يتجاوز المساحة المتاحة */
+
+}
+
+.topbar.expanded {
+    margin-left: 0;
+    /* تمدد التوب بار عند إخفاء الـ sidebar */
+    width: 100%;
+}
+
+.topbar .search-bar {
+    display: flex;
+    align-items: center;
+    background: #ececec65;
+    border-radius: 15px;
+    padding: 8px 12px;
+    width: 500px;
+    border: none;
+    margin-left: 10px;
+    /* تحريكه لليمين */
+
+}
+
+.topbar .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.topbar .date-picker {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    /* مسافة بين الأيقونة والنص */
+    color: rgba(0, 0, 0, 0.4);
+    /* لون رمادي فاتح */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.calendar-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F3F3;
+    border-radius: 50%;
+}
+
+.calendar-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+.topbar .user-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* ترتيب العناصر أفقيًا */
+    gap: 10px;
+    padding: 5px 15px;
+}
+
+.topbar .user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name  {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+#user-id {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4); /* لون رمادي فاتح */
+    margin-left: auto; /* يدفع الـ ID إلى اليمين */
+}
+
+.topbar .user-avatar {
+    width: 40.8px; /* حجم الحاوية */
+    height: 40.8px;
+    border-radius: 50%; /* إذا كنت لا تريد أن تكون دائرية، احذف هذه الخاصية */
+    background: none; /* إزالة أي لون خلفية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* منع الصورة من الخروج عن الحاوية */
+
+}
+
+#profile-image {
+    width: 40.8px; /* حجم الأيقونة */
+    height: 40.8px;
+}
+
+
+
+.topbar .menu-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.topbar .menu-icon img {
+    width: 24px;
+    /* حجم الأيقونة */
+    height: 24px;
+    opacity: 0.6;
+}
+
+.topbar .notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    /* حجم الدائرة */
+    height: 40px;
+    border-radius: 50%;
+    background: #F3F3F3;
+    /* لون خلفية الدائرة */
+}
+
+.topbar .notification-icon img {
+    width: 24px;
+    /* حجم الأيقونة */
+    height: 24px;
+}
+
+.topbar .notification-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white;
+    /* لإضافة مسافة بيضاء حول الدائرة */
+}
+
+/* زر التحكم في التوب بار (يكون مخفيًا افتراضيًا) */
+#toggleSidebarTop {
+    display: none;
+    /* إخفاؤه عند تحميل الصفحة */
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* أيقونة داخل الزر */
+#toggleSidebarTop img {
+    width: 24px;
+    height: 24px;
+}
+
+/* تغيير لون الزر عند تمرير الماوس */
+#toggleSidebarTop:hover {
+    background: #f0f0f0;
+    /* لون رمادي فاتح عند التمرير */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    /* تأثير ظل أقوى */
+}
+
+/* إظهار الزر فقط عند إخفاء الشريط الجانبي */
+.sidebar.collapsed+.topbar #toggleSidebarTop {
+    display: flex;
+}
+
+/* ضبط موضع الزر داخل التوب بار */
+.topbar .menu-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 45px;
+    /* لضبط المسافة من الحافة اليسرى */
+}
+
+
+.content {
+    flex-grow: 1;
+    padding-top: 90px;
+    margin-left: 300px;
+    min-height: 100vh;
+    overflow: visible;
+    /* لا تمرير داخلي */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content.expanded {
+    margin-left: 0;
+    /* تمديد الصفحة عندما يتم إغلاق sidebar */
+}
+
+
+.container {
+    position: relative;
+    flex: 1;
+    background: #e6eeff8e;
+    border-radius: 0;
+    height: auto;
+    width: auto;
+    min-height: 100vh;
+    margin: auto;
+    overflow: visible;
+}
+
+.ACCOUNT {
+    padding: 25px;
+}
+
+.ACCOUNT h2 {
+    font-size: 30px;
+    font-weight: 900;
+    margin-left: 55px;
+    margin-top: 30px;
+    color: #004AAB;
+    -webkit-text-stroke: 0.9px #004AAB;
+    text-stroke: 0.9px #004AAB;
+}
+
+
+/*-----------------------------------------------------*/
+
+
+.profile-pic-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-pic-container label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic-container img {
+    width: 140;
+    height: 132px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    object-fit: cover;
+    background: url('../images/Person.svg') no-repeat center;
+    background-size: cover;
+}
+
+.profile-pic-container input {
+    display: none;
+}
+
+.profile-pic-container label::after {
+    content: '\270E';
+    /* Unicode for edit icon */
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+
+
+
+
+/*---------------------------------------------*/
+.account-form {
+    display: flex;
+    /*align-items: center;  توسيط العناصر داخل الفورم */
+    flex-direction: column;
+    gap: 10px;
+   
+}
+
+.account-form label {
+    text-align: left;
+    font-weight: bold;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    /* or 30px */
+    letter-spacing: -0.01em;
+    color: #6F6F6F;
+}
+
+.account-form input:focus {
+    outline: none;
+}
+
+.account-form label span {
+    margin-left: 30%;
+}
+
+
+.account-form input {
+    width: 40%;
+    height: 30px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #ECECEC;
+    border-radius: 13px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 150%;
+    margin-left: 30%;
+    letter-spacing: -0.01em;
+    color: #6F6F6F;
+
+
+}
+
+
+
+  .account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-form label {
+    text-align: left;
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 20px;
+    color: #6F6F6F;
+}
+
+.account-form input {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #ECECEC;
+    border-radius: 13px;
+    font-family: 'Poppins';
+    font-size: 13px;
+    color: #6F6F6F;
+}
+
+
+
+/*---------------------------------------------------------------*/
+
+/* ---------------- نافذة الإشعارات ---------------- */
+.notification-popup {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    width: 320px;
+    max-height: 420px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 3000;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .notification-popup .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #004AAB;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .notification-popup .popup-header .close-popup {
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* ---------------- قائمة الإشعارات ---------------- */
+  .notification-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .notification-list li {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .notification-list li span {
+    flex-grow: 1;
+  }
+  
+  /* ---------------- الإشعار الفوري (Toast) ---------------- */
+  .toast-notification {
+    position: fixed;
+    top: 90px;
+    left: 60%;
+    transform: translateX(-50%) translateY(-20px); /* يوسّطه أفقياً */
+    background-color: #004AAB;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+  }
+  
+  .toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+  

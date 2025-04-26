@@ -1,0 +1,342 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+* {
+    box-sizing: border-box;
+    list-style: normal;
+    font-family: inherit;
+    margin: unset;
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: unset;
+}
+
+/*-----------------------------------------------------------------*/
+
+
+.background {
+    background-color: #ffff;
+    width: 100vw; /* جعلها تمتد على عرض الشاشة بالكامل */
+    height: 100vh; /* جعلها تمتد على ارتفاع الشاشة بالكامل */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto; 
+
+    /*border: 5px solid #004aab;*/
+    @media only screen and (max-width:1050px) {
+        flex-direction: column;
+    }
+}
+
+
+/* Align image section to the left */
+.column {
+    width: 100%;
+    height: auto; /* الحفاظ على التناسب */
+    display: block; /* منع أي هوامش زائدة */
+    margin: 0 auto; /* توسيط الصورة */
+    object-fit: contain; /* الحفاظ على جودة الصورة */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    filter: drop-shadow(10px 0px 20px rgba(0, 0, 0, 0.15));
+
+    @media only screen and (max-width:1050px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+/* Style the form layout */
+.form {
+    padding-top: 100px;
+    padding-left: 46px;
+    padding-right: 46px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @media only screen and (max-width:1050px) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+
+/*login text style*/
+.login {
+    position: relative;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 150%;
+    letter-spacing: -0.01em;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+
+/* login prompt section 1 */
+.form_login-prompt {
+    align-self: stretch;
+    display: flex;
+
+}
+
+.form_signup-1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+}
+/* Style the sign-up link */
+.form_signup-2 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    text-decoration-line: underline;
+
+    color: #111111;
+}
+
+.form_login-prompt2 {
+    align-self: stretch;
+    display: flex;
+    margin: 9% auto 10px 17.5%;
+
+}
+
+
+.form-pas {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    margin: 10px auto 15px 23%;
+
+    color: #111111;
+}
+
+
+/*------------------------------------*/
+
+
+/*--registration form section--*/
+
+.form_fields {
+
+    margin-top: 38px;
+    align-self: stretch;
+}
+
+
+.form_fields-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+.form_field {
+    align-self: stretch;
+}
+
+
+.form_field-label {
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 18px;
+
+}
+
+.text_form {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #666666;
+}
+
+ /* Style input boxes */
+.form_input1 {
+    box-sizing: border-box;
+    width: 470px;
+    height: 56px;
+    border: 1px solid #66666659 !important;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: text;
+}
+
+
+/* Styling the input inside the label */
+.form_input1 input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    background: transparent;
+    padding: 15px; /* إضافة مسافة داخلية */
+}
+
+/* إصلاح الإطار الأسود */
+#passwordField {
+    background-color: white !important; /* إزالة أي لون غير متوقع */
+    padding: 15px; /* إضافة مسافة داخلية */
+}
+
+
+/* Removing border on focus for a cleaner look */
+.form_input1 input:focus {
+    border: none;
+    outline: none;
+}
+
+/* Enhancing input field on hover */
+.form_input1:hover {
+    border-color: #007BFF !important;
+}
+
+
+/* Making the design fully responsive */
+@media (max-width: 600px) {
+    .form_input1 {
+        max-width: 100%;
+    }
+}
+
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 470px;
+}
+
+
+.password_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* "Hide" Text and Eye Icon */
+.toggle_visibility {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+    cursor: pointer;
+    gap: 5px;
+    /* Space between text and icon */
+}
+
+/* Custom Eye Icon */
+.toggle_visibility img {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* Password Info Text */
+.password_info {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #666666;
+}
+
+
+/* Checkbox "Remember me" */
+.remember_me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* تباعد بين الشيك بوكس والنص */
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #333333;
+
+
+
+    margin-bottom: 10%;
+}
+
+/* Checkbox */
+.remember_me input {
+    width: 16px;
+    height: 16px;
+    accent-color: #004AAB;
+    cursor: pointer;
+}
+
+
+
+
+/* Submit Button */
+.submit_button{
+    min-width: 234px;
+    height: 64px;
+    background: #979797; /* لون رمادي عندما يكون معطلاً */
+    border: none;
+    border-radius: 16px;
+    font-family: 'Poppins';
+    font-size: 22px;
+    color: white;
+    cursor: not-allowed; /* يمنع النقر عند التعطيل */
+    text-align: center;
+    display: block;
+    margin: 10px auto 10px 20%;
+    margin-left: 130px;
+    transition: background 0.3s ease-in-out; /* تأثير سلس عند التغيير */
+}
+
+.submit_button:enabled {
+    background: #004AAB; /* يصبح أزرق عندما يتم تفعيله */
+    cursor: pointer;
+}
+
+
+
+/*-----------------------------------------------------------------*/

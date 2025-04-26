@@ -1,0 +1,11 @@
+# Firebase secret
+firebase-adminsdk.json
+
+# Twilio secrets
+app/services/twilio_sms.py
+app/routes/whatsapp.py
+app/services/whatsapp_bot.py
+
+# Cloudinary secrets
+app/services/cloudinary_uploader.py
+

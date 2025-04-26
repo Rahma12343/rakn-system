@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="We harness the latest technologies to make the parking experience more comfortable." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>About Us</title>
+    <link rel="stylesheet" href="../Global/AboutStyle.css">
+    <!--link of JavaScrept-->
+    <script defer src="../Scripts/main.js"></script>
+    <script defer src="../Scripts/notify.js"></script>
+   <!-- <script defer src="../Scripts/feadback.js"></script> -->
+
+</head>
+<body>
+
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo"><img src="../images/Logo.svg" alt="Logo"></div>
+
+        <!-- زر إخفاء القائمة -->
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <img src="../images/indent.svg" alt="Close Sidebar">
+        </div>
+
+        <!-- عنوان القائمة مع الخط -->
+        <div class="menu-title">Menu</div>
+        <hr class="menu-divider">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="MVoilation.html" class="menu-link">
+                        <img src="../images/ViolateGray.svg" alt=""> Manage Violation
+                    </a>
+                </li>
+                <li>
+                    <a href="MNCamera.html" class="menu-link">
+                        <img src="../images/Camera.png" alt=""> Manage Cameras
+                    </a>
+                </li>
+                <li>
+                    <a href="account.html" class="menu-link">
+                        <img src="../images/Account.svg" alt=""> Account
+                    </a>
+                </li>
+                <li>
+                    <a href="AboutUs.html" class="menu-link active" >
+                        <img src="../images/Info.svg" alt=""> About us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="logout">
+            <a href="#" class="logout-link" id="logoutBtn">
+              <img src="../images/Logout Rounded Left.svg" alt="Logout Icon">
+              Logout
+            </a>
+          </div>
+          
+    </aside>
+
+    <main class="content">
+        <header class="topbar" id="menuIcon">
+            <div class="menu-icon" id="toggleSidebarTop" style="display: none;">
+                <img src="../images/boldback.svg" alt="Open Sidebar">
+            </div>
+
+            <div class="search-bar">
+                <img src="../images/Serch.svg" alt="Search">
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="date-picker">
+                <div class="calendar-icon">
+                    <img src="../images/Calendar.svg" alt="Calendar">
+                </div>
+                <span id="current-date"></span> <!-- سيتم تحديث هذا العنصر تلقائيًا -->
+            </div>
+
+            <div class="notification-icon">
+                <img src="../images/Notification.svg" alt="Notifications">
+                <span class="badge">3</span> <!-- رقم الإشعارات -->
+            </div>
+
+            <div class="user-info">
+                <div class="user-details">
+                    <span id="user-name"> --</span>
+                    <span id="user-id">--</span>
+                </div>
+                <div class="user-avatar">
+                    <img id="profile-image" src="../images/Persson.svg" alt="User">
+                </div>
+            </div>
+        </header>
+        <!-- Background Section -->
+        <div class="container">
+
+
+
+
+            <div class="video-section">
+                <video id="raknVideo" autoplay muted loop>
+                    <source src="../videos/Logo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+
+                <div class="about-section">
+                    <h2>About us</h2>
+                    <p>
+                        <strong>RAKN</strong> is an innovative AI-powered parking violation management system designed to enhance 
+                        parking enforcement efficiency and organization. The system enables security personnel to detect, report, 
+                        and manage vehicle violations seamlessly using advanced technology.
+                    </p>
+                    <p>
+                        With <strong>RAKN</strong>, violations are accurately logged, and security teams can efficiently track and 
+                        address parking infractions. The platform also integrates real-time data analysis, automated reporting, 
+                        and a user-friendly interface, ensuring a smooth and transparent process.
+                    </p>
+
+                </div>
+
+                <div class="features-section">
+                    <div class="feature">
+                        <div class="circle">
+                            <img src="../images/VoilationManager.svg" alt="Violation Management">
+                        </div>
+                        <p class="feature-text">Violation Management</p>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="circle">
+                            <img src="../images/time.svg" alt="Real-time Monitoring">
+                        </div>
+                        <p class="feature-text">Real-time Monitoring</p>
+                    </div>
+                
+                    <div class="feature">
+                        <div class="circle">
+                            <img src="../images/browse.svg" alt="User-Friendly Interface">
+                        </div>
+                        <p class="feature-text">User-Friendly Interface</p>
+                    </div>
+                </div>
+                <!----------------------
+                
+                <div class="feedback-section">
+                    <p>
+                        Your feedback directly helps our development team improve the RAKN platform to better meet your needs. 
+                        Whether you have suggestions, faced any issues, or simply want to share your thoughts, we would love to hear from you. 
+                        Please submit your input using the <a href="#" id="openFeedbackLink" class="feedback-link">Feedback</a> form.
+                    </p>
+                    
+                </div>
+            
+                -->
+ 
+
+                <!-- نافذة الفيدباك المنبثقة 
+                <div id="feedbackModal" class="modal" style="display: none;">
+                    <div id="feedback" class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Feedback</h2>
+                        <form id="feedbackForm">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" required>
+
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" required>
+
+                            <label for="message">Message:</label>
+                            <textarea id="message" rows="4" required></textarea>
+
+                            <button type="submit">Submit</button>
+                            <p id="feedbackSuccess" style="display: none; color: green; margin-top: 10px;">
+                                Thank you! Your feedback has been submitted.
+                            </p>
+                            
+                        </form>
+                    </div>
+                </div>    
+                -->                    
+   
+            
+        </div>
+
+
+    </main>
+    <!-- نافذة منبثقة لعرض الإشعارات -->
+    <div id="notificationPopup" class="notification-popup">
+        <div class="popup-header">
+            <h3>Notifications</h3>
+            <span class="close-popup" onclick="closeNotificationPopup()">×</span>
+        </div>
+            <ul id="notificationList" class="notification-list">
+            </ul>
+    </div>
+</body>
+</html>

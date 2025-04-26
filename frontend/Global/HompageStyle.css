@@ -1,0 +1,546 @@
+
+:root {
+    --blue-color: #004AAB;
+    --wight-color: #FFFFFF;
+    --gray1-color: #FAFAFA;
+    --gray2-color: #E6E6E6;
+    --gray3-color:#6F6F6F;
+    --gray4-color: #666666;
+    --gray5-color: #ECECEC;
+    --gray6-color: #A0A0A0;
+    --gray7-color: #999999;
+
+    --red-color: #EB3223;
+    --black-color: #000000;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #ffffff; /* تغيير الخلفية إلى الأبيض */
+    overflow-y: auto; /* السماح بالتمرير فقط للصفحة */
+
+}
+
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;  
+    background: #fff;
+    padding: 20px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    padding-bottom: 20px; /* إضافة بعض التباعد في الأسفل */
+    transition: left 0.3s ease-in-out; /* إضافة تأثير الظهور */
+}
+
+/* عند إخفاء الشريط الجانبي */
+.sidebar.collapsed {
+    left: -360px; /* تحريك القائمة للخارج */
+}
+
+/* عند إخفاء الشريط الجانبي، يتمدد المحتوى */
+.content.expanded, .topbar.expanded {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* تأثير الحركة عند الإخفاء */
+.sidebar, .content, .topbar {
+    transition: all 0.3s ease-in-out;
+}
+
+
+.sidebar .logo {
+    text-align: center;
+    padding: 80px 0 20px; 
+}
+
+.sidebar .logo img {
+    width: 200px;
+}
+
+.sidebar .menu-title {
+    font-size: 16px;
+    color: #B0B0B0;
+    font-weight: bold;
+    padding: 15px 15px 0px; /* زيادة المسافة العلوية لإنزال القائمة */
+}
+
+
+
+.sidebar nav {
+    margin-top: 0px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.sidebar nav ul li img {
+    width: 32px;  /* زيادة عرض الأيقونة */
+    height: 32px; /* زيادة ارتفاع الأيقونة */
+    margin-right: 12px; /* الحفاظ على المسافة بين الأيقونة والنص */
+}
+
+
+
+
+
+/* تنسيق الروابط داخل القائمة الجانبية */
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #666; /* اللون الافتراضي */
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 5px 0;
+    font-size: 16px;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* تنسيق العنصر النشط */
+.sidebar nav ul li a.active {
+    background: #004AAB; /* لون الخلفية عند التحديد */
+    color: #ffffff; /* لون النص عند التحديد */
+    font-weight: bold;
+}
+
+/* تغيير لون الأيقونة داخل العنصر النشط */
+.sidebar nav ul li a.active img {
+    filter: brightness(0) saturate(100%) invert(30%) sepia(90%) saturate(700%) hue-rotate(200deg);
+}
+
+/* عند تمرير الماوس فوق العنصر */
+.sidebar nav ul li a:hover {
+    background: #ECECEC;
+}
+
+
+.sidebar .logout {
+    margin-top: 15px;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+/* تنسيق الرابط داخل زر تسجيل الخروج */
+.sidebar .logout a {
+    display: flex;
+    align-items: center;
+    color: red; /* لون النص */
+    font-size: 16px;
+    text-decoration: none; /* إزالة الخط */
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sidebar .logout a img {
+    width: 20px; /* ضبط حجم الأيقونة */
+    height: 20px;
+    margin-right: 10px; /* إضافة مسافة بين الأيقونة والنص */
+}
+
+/* عند تمرير الماوس، تغيير لون الخلفية */
+.sidebar .logout a:hover {
+    background: rgba(255, 0, 0, 0.1); /* تأثير خفيف عند التمرير */
+    color: darkred;
+}
+
+/* جعل زر التحكم في الركن العلوي الأيسر */
+.toggle-sidebar {
+    position: absolute;
+    top: 25px; /* يحدد المسافة من الأعلى */
+    left: 25px; /* يحدد المسافة من اليسار */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #fff; /* خلفية بيضاء */
+    border-radius: 50%; /* يجعل الزر دائريًا */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: 1100; /* تأكد من أن الزر فوق كل العناصر */
+}
+
+/* تغيير لون الخلفية عند التفاعل */
+.toggle-sidebar:hover {
+    background: #f0f0f0;
+}
+
+/* جعل الأيقونة بداخل الزر */
+.toggle-sidebar img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* عند تصغير الشريط الجانبي، تدور الأيقونة */
+.sidebar.collapsed .toggle-sidebar img {
+    transform: rotate(180deg);
+}
+
+
+
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF; /* لون أزرق فاتح يبدأ من العنوان */
+    padding: 12px 20px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    height: 70px; /* تقليل الارتفاع */
+    position: fixed; /* جعله ثابتًا في الأعلى */
+    top: 0;
+    right: 0;
+    z-index: 100;
+    margin-left: 280px; /* يجعل شريط البحث يبدأ بعد الشريط الجانبي */
+    width: calc(100% - 360px); /* تأكد من أن العرض لا يتجاوز المساحة المتاحة */
+
+}
+
+.topbar.expanded {
+    margin-left: 0; /* تمدد التوب بار عند إخفاء الـ sidebar */
+    width: 100%;
+} 
+
+.topbar .search-bar {
+    display: flex;
+    align-items: center;
+    background: #ececec65;
+    border-radius: 15px;
+    padding: 8px 12px;
+    width: 500px;
+    border: none;
+    margin-left: 10px; /* تحريكه لليمين */
+
+}
+
+.topbar .search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.topbar .date-picker {
+    display: flex;
+    align-items: center;
+    gap: 9px; /* مسافة بين الأيقونة والنص */
+    color: rgba(0, 0, 0, 0.4); /* لون رمادي فاتح */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.calendar-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F3F3;
+    border-radius: 50%;
+}
+
+.calendar-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+.topbar .user-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row; /* ترتيب العناصر أفقيًا */
+    gap: 10px;
+    padding: 5px 15px;
+}
+
+.topbar .user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-name  {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+#user-id {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4); /* لون رمادي فاتح */
+    margin-left: auto; /* يدفع الـ ID إلى اليمين */
+}
+
+.topbar .user-avatar {
+    width: 40.8px; /* حجم الحاوية */
+    height: 40.8px;
+    border-radius: 50%; /* إذا كنت لا تريد أن تكون دائرية، احذف هذه الخاصية */
+    background: none; /* إزالة أي لون خلفية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* منع الصورة من الخروج عن الحاوية */
+
+}
+
+#profile-image {
+    width: 40.8px; /* حجم الأيقونة */
+    height: 40.8px;
+}
+
+
+
+.topbar .menu-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.topbar .menu-icon img {
+    width: 24px; /* حجم الأيقونة */
+    height: 24px;
+    opacity: 0.6; 
+}
+
+.topbar .notification-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;  /* حجم الدائرة */
+    height: 40px;
+    border-radius: 50%;
+    background: #F3F3F3; /* لون خلفية الدائرة */
+}
+
+.topbar .notification-icon img {
+    width: 24px; /* حجم الأيقونة */
+    height: 24px;
+}
+
+.topbar .notification-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white; /* لإضافة مسافة بيضاء حول الدائرة */
+}
+
+/* زر التحكم في التوب بار (يكون مخفيًا افتراضيًا) */
+#toggleSidebarTop {
+    display: none; /* إخفاؤه عند تحميل الصفحة */
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* أيقونة داخل الزر */
+#toggleSidebarTop img {
+    width: 24px;
+    height: 24px;
+}
+
+/* تغيير لون الزر عند تمرير الماوس */
+#toggleSidebarTop:hover {
+    background: #f0f0f0; /* لون رمادي فاتح عند التمرير */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* تأثير ظل أقوى */
+}
+
+/* إظهار الزر فقط عند إخفاء الشريط الجانبي */
+.sidebar.collapsed + .topbar #toggleSidebarTop {
+    display: flex;
+}
+
+/* ضبط موضع الزر داخل التوب بار */
+.topbar .menu-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 45px; /* لضبط المسافة من الحافة اليسرى */
+}
+
+
+
+/* ---------------- نافذة الإشعارات ---------------- */
+.notification-popup {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    width: 320px;
+    max-height: 420px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 3000;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .notification-popup .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #004AAB;
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  
+  .notification-popup .popup-header .close-popup {
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* ---------------- قائمة الإشعارات ---------------- */
+  .notification-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .notification-list li {
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .notification-list li span {
+    flex-grow: 1;
+  }
+  
+  /* ---------------- الإشعار الفوري (Toast) ---------------- */
+  .toast-notification {
+    position: fixed;
+    top: 90px;
+    left: 60%;
+    transform: translateX(-50%) translateY(-20px); /* يوسّطه أفقياً */
+    background-color: #004AAB;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+  }
+  
+  .toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content {
+    flex-grow: 1;
+    margin-left: 280px; /* تعويض عرض الشريط الجانبي */
+    min-height: 100vh; /* ضمان امتداد المحتوى على كامل الصفحة */
+    overflow: visible; /* لا تمرير داخلي */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.content.expanded {
+    margin-left: 0; /* تمديد الصفحة عندما يتم إغلاق sidebar */
+}
+
+
+.container {
+    position: relative; /* جعل العنصر الرئيسي يحتوي على العناصر الأخرى */
+    flex: 1;
+    background: #e6eeff8e; /* لون أزرق فاتح يبدأ من العنوان */
+    border-radius: 0;
+    height: auto;  /* بدلًا من 100vh */
+    width:auto;
+    min-height: 100vh; /* لضمان الامتداد دون فرض ارتفاع زائد */
+    margin: auto; /* جعله في المنتصف */
+    overflow: visible; /* لا تمرير داخلي */
+}
+
+
+/* الشعار كعنصر منفصل فوق الخلفية */
+.logo-overlay {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-48%, -50%); /* جعله في منتصف الخلفية */
+    width: 50%; /* حجم الشعار */
+    opacity: 0.1; /* درجة الشفافية */
+    z-index: 10; /* التأكد من أنه فوق الخلفية */
+}
+
+.logo-overlay img {
+    width: 100%;
+    height: auto;
+}
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RAKN Login </title>
+
+    <!--link of css-->
+    <link rel="stylesheet" href="../Global/LoginStyle.css">
+
+    <!--link of JavaScrept-->
+    <script defer src="../Scripts/Login.js"></script>
+    <!--link of fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Background section -->
+    <div class="background">
+
+        <div class="column">
+            <!-- Image section -->
+            <img src="../images/الصفحة3.png" alt="parking" class="column-image">
+        </div>
+        <div class="form">
+            <!-- Login form section -->
+            <h1 class=".login"> Log in </h1>
+
+            <!--registration form section-->
+
+            <form class="form_fields" action="" method="get">
+                <div class="form_field-label">
+                    <!-- ID Field -->
+                    <div class="form_login-prompt">
+                        <p class="text_form">Identification - ID</p>
+                    </div>
+                    <label class="form_input1" >
+                        <input required type="text" name="id">
+                    </label>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form_field-label password-container">
+                    <div class="password_header">
+                        <label class="text_form">Password</label>
+                        <!-- Toggle password visibility button -->
+                        <span class="toggle_visibility" onclick="togglePassword()">
+                            <img id="eyeIcon" src="../images/315219_hidden_eye_icon.svg" alt="Toggle Password">
+                            <span id="eyeText">Hide</span>
+                        </span>
+                    </div>
+                    <input required id="passwordField" class="form_input1" type="password">
+                </div>
+
+                <!-- Checkbox "Remember me" -->
+                <div class="remember_me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+                
+                <div>
+                    <!-- Submit Button -->
+                    <button type="submit" id="signInButton" class="submit_button">Sign in</button>
+                </div>
+                <!-- Password recovery link -->
+                <a href="#" class="form-pas"> Forget your password </a>
+
+            </form>
+
+            <!-- Section prompting user to sign up if they don't have an account -->
+            <div class="form_login-prompt2">
+                <p>
+                    <span class="form_signup-1">Don’t have an account ?</span>
+                    <a href="Singup.html" class="form_signup-2"> Sign up </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+<html>
+

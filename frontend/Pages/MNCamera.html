@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="We harness the latest technologies to make the parking experience more comfortable." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Manage Camera</title>
+
+    <!-- CSS files -->
+    <link rel="stylesheet" href="../Global/MNCamera.css">
+    <link rel="stylesheet" href="../Global/print.css" media="print">
+
+    <!-- JS -->
+    <script defer src="../Scripts/main.js"></script>
+    <script defer src="../Scripts/camera.js"></script>
+    <script defer src="../Scripts/notify.js"></script>
+
+
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo"><img src="../images/Logo.svg" alt="Logo"></div>
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <img src="../images/indent.svg" alt="Close Sidebar">
+        </div>
+
+        <div class="menu-title">Menu</div>
+        <hr class="menu-divider">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="MVoilation.html" class="menu-link">
+                        <img src="../images/VOOL.svg" alt="Violation Icon"> Manage Violation
+                    </a>
+                </li>
+                <li>
+                    <a href="MNCamera.html" class="menu-link active">
+                        <img src="../images/search-engine.png" alt=""> Manage Cameras
+                    </a>
+                </li>
+                <li>
+                    <a href="account.html" class="menu-link">
+                        <img src="../images/Account.svg" alt=""> Account
+                    </a>
+                </li>
+                <li>
+                    <a href="AboutUs.html" class="menu-link">
+                        <img src="../images/Info.svg" alt=""> About us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="logout">
+          <a href="#" class="logout-link" id="logoutBtn">
+            <img src="../images/Logout Rounded Left.svg" alt="Logout Icon">
+            Logout
+          </a>
+        </div>
+        
+    </aside>
+
+    <main class="content">
+        <header class="topbar" id="menuIcon">
+            <div class="menu-icon" id="toggleSidebarTop" style="display: none;">
+                <img src="../images/boldback.svg" alt="Open Sidebar">
+            </div>
+
+            <div class="search-bar">
+                <img src="../images/Serch.svg" alt="Search">
+                <input type="text" placeholder="Search">
+            </div>
+
+            <div class="date-picker">
+                <div class="calendar-icon">
+                    <img src="../images/Calendar.svg" alt="Calendar">
+                </div>
+                <span id="current-date"></span>
+            </div>
+
+            <div class="notification-icon">
+                <img src="../images/Notification.svg" alt="Notifications">
+                <span class="badge">3</span>
+            </div>
+
+            <div class="user-info">
+              <div class="user-details">
+                  <span id="user-name"> --</span>
+                  <span id="user-id">--</span>
+              </div>
+              <div class="user-avatar">
+                  <img id="profile-image" src="../images/Persson.svg" alt="User">
+              </div>
+          </div>
+        </header>
+
+        <!-- Main Section -->
+        <div class="container">
+            <div class="manage-Camera">
+                <h2>Manage Camera</h2>
+              
+                <!-- كاميرات -->
+                <div class="camera-options-wrapper">
+                  <div class="camera-options">
+                    <div class="camera-container horizontal">
+                      <button class="add-icon-btn" onclick="openAddDroneModal()">＋</button>
+                      <div>
+                        <button class="camera-btn" id="btn-drone">
+                          <img src="../images/Group67.png" alt="Drones">
+                        </button>
+                        <p class="camera-label">Drones</p>
+                      </div>
+                    </div>
+              
+                    <div class="camera-container horizontal">
+                      <button class="add-icon-btn" onclick="openAddGateModal()">+</button>
+                      <div>
+                        <button class="camera-btn" id="btn-gate">
+                          <img src="../images/Gatecam.png" alt="Gate Cameras">
+                        </button>
+                        <p class="camera-label">Gate Cameras</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal لإضافة درون -->
+                <div id="addDroneModal" class="modal">
+                    <div class="modal-content">
+                    <span class="close" onclick="closeAddDroneModal()">&times;</span>
+                    <h3>Add New Drone</h3>
+                    <form id="droneForm">
+                      <label>Model:</label>
+                      <input type="text" name="model" required>
+                    
+                      <label>Battery:</label>
+                      <input type="number" name="battery" required>
+                    
+                      <label>Brand:</label>
+                      <input type="text" name="brand" required>
+                    
+                      <label>Color:</label>
+                      <input type="text" name="color" required>
+                    
+                      <label>Status:</label>
+                      <select name="status">
+                        <option>On</option>
+                        <option>Off</option>
+                      </select>
+                    
+                      <button type="submit">Add Drone</button>
+                    </form>
+                    
+                    </div>
+                </div>
+
+                <!-- Modal لإضافة Gate Camera -->
+                <div id="addGateModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close" onclick="closeAddGateModal()">&times;</span>
+                    <h3>Add New Gate Camera</h3>
+                    <form id="gateCameraForm">
+                      <label>Model:</label>
+                      <input type="text" name="model" required>
+
+                      <label>Resolution:</label>
+                      <input type="text" name="resolution" required>
+
+                      <label>Brand:</label>
+                      <input type="text" name="brand" required>
+
+                      <label>Color:</label>
+                      <input type="text" name="color" required>
+
+                      <label>Status:</label>
+                      <select name="status">
+                        <option>On</option>
+                        <option>Off</option>
+                      </select>
+
+                      <button type="submit">Add Camera</button>
+                    </form>
+                  </div>
+                </div>
+
+                <!-- Edit Modal for Gate Camera -->
+                <div id="editGateCameraModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close" onclick="closeEditGateCameraModal()">&times;</span>
+                    <h3>Edit Gate Camera</h3>
+                    <form id="editGateCameraForm">
+                      <label>Model:</label>
+                      <input type="text" id="editModel">
+
+                      <label>Resolution:</label>
+                      <input type="text" id="editResolution">
+
+                      <label>Brand:</label>
+                      <input type="text" id="editBrand">
+
+                      <label>Color:</label>
+                      <input type="text" id="editColor">
+
+                      <label>Status:</label>
+                      <select id="editStatus">
+                        <option>On</option>
+                        <option>Off</option>
+                      </select>
+
+                      <button type="submit">Save Changes</button>
+                    </form>
+                  </div>
+                </div>
+
+
+                <!-- Edit Modal for Drone -->
+                <div id="editDroneModal" class="modal">
+                  <div class="modal-content">
+                    <span class="close" onclick="closeEditDroneModal()">&times;</span>
+                    <h3>Edit Drone</h3>
+                    <form id="editDroneForm">
+                      <label>Model:</label>
+                      <input type="text" id="editDroneModel">
+
+                      <label>Battery:</label>
+                      <input type="number" id="editDroneBattery">
+
+                      <label>Brand:</label>
+                      <input type="text" id="editDroneBrand">
+
+                      <label>Color:</label>
+                      <input type="text" id="editDroneColor">
+
+                      <label>Status:</label>
+                      <select id="editDroneStatus">
+                        <option>On</option>
+                        <option>Off</option>
+                      </select>
+
+                      <button type="submit">Save Changes</button>
+                    </form>
+                  </div>
+                </div>
+
+
+
+
+  
+                <!-- الجداول -->
+                <div class="camera-list" id="drone-table">
+                  <h3 class="section-subtitle">Drone List</h3>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Model</th>
+                        <th>Battery</th>
+                        <th>Brand</th>
+                        <th>Color</th>
+                        <th>Status</th>
+                        <th>Delete / Edit</th>
+                      </tr>
+                    </thead>
+                    <tbody id="droneBody">
+                      <tr>
+                        <td class="auto-number"></td>
+                        <td>4DRC V9</td>
+                        <td>3</td>
+                        <td>4DRC</td>
+                        <td>Gray</td>
+                        <td>On</td>
+                        <td>
+                          <div class="action-buttons">
+                            <button class="delete-btn" onclick="deleteRow(this)">🗑️</button>
+                            <button class="edit-btn" onclick="openEditDroneModal(this)">✏️</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+              
+              <!-- جدول Gate Cameras -->
+              <div class="camera-list" id="gate-table">
+                <h3 class="section-subtitle">Gate Camera List</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Model</th>
+                      <th>Resolution</th>
+                      <th>Brand</th>
+                      <th>Color</th>
+                      <th>Status</th>
+                      <th>Delete / Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gateCameraBody">
+                    <tr>
+                      <td class="auto-number"></td>
+                      <td>Hikvision DS-2CD</td>
+                      <td>1080p</td>
+                      <td>Hikvision</td>
+                      <td>White</td>
+                      <td>On</td>
+                      <td>
+                        <div class="action-buttons">
+                          <button class="delete-btn" onclick="deleteRow(this)">🗑️</button>
+                          <button class="edit-btn" onclick="openEditGateCameraModal(this)">✏️</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+
+
+              </div>
+              
+        </div>
+    </main>
+
+    <!-- نافذة منبثقة لعرض الإشعارات -->
+    <div id="notificationPopup" class="notification-popup">
+      <div class="popup-header">
+          <h3>Notifications</h3>
+          <span class="close-popup" onclick="closeNotificationPopup()">×</span>
+      </div>
+          <ul id="notificationList" class="notification-list">
+          </ul>
+  </div>
+
+</body>
+</html>

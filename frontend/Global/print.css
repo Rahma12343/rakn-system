@@ -1,0 +1,54 @@
+/* إخفاء العناصر غير الضرورية عند الطباعة */
+@media print {
+    body, html {
+        background: #fff;
+        color: #000;
+        font-size: 14pt; /* تكبير حجم النص العام */
+    }
+    
+    /* إخفاء الشريط الجانبي وشريط التنقل */
+    .sidebar, .topbar, .filter-container, .notification-icon {
+        display: none;
+    }
+    
+    /* جعل الجدول في الوسط */
+    .table-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+    
+    table {
+        width: 90%; /* تكبير عرض الجدول */
+        border-collapse: collapse;
+        border: 2px solid black;
+        font-size: 16pt; /* تكبير حجم الخط داخل الجدول */
+    }
+    
+    th, td {
+        border: 2px solid black;
+        padding: 20px; /* زيادة التباعد داخل الخلايا */
+        text-align: center;
+    }
+    
+    /* تحسين رأس الجدول للطباعة */
+    th {
+        background-color: #004AAB;
+        color: white;
+        font-size: 18pt;
+        padding: 25px; /* زيادة حجم الخلايا في الرأس */
+    }
+    
+    /* إزالة ألوان الخلفية */
+    td {
+        background: none;
+    }
+    
+    /* تحسين عرض التفاصيل */
+    .details-btn, .details-icon {
+        display: none;
+    }
+}
